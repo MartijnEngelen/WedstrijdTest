@@ -27,7 +27,7 @@
 		<chmod file="${basedir}/build/generate-child-classes.php" perm="u+rwx"/>
         <exec executable="${basedir}/build/generate-child-classes.php" taskname="generate-code"/>
 
-      <!--  <exec executable="${basedir}/build/tools/phpab.phar" taskname="generate-code">
+      <!-- <exec executable="${basedir}/build/tools/phpab.phar" taskname="generate-code">
             <arg value="--output"/>
             <arg path="*/autoload.php"/>
             <arg path="*"/>
