@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="EGRS" default="build">
 
-    <target name="build" depends="prepare,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpdox"/>
+    <target name="build" depends="prepare,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci"/>
 
 	
     <target name="clean" unless="clean.done" description="Cleanup build artifacts">
