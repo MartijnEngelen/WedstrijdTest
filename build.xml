@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="EGRS" default="build">
 
-    <target name="build" depends="prepare,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci"/>
+    <target name="build" depends="prepare,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,copy-to-test"/>
 
 	
     <target name="clean" unless="clean.done" description="Cleanup build artifacts">
@@ -114,6 +114,8 @@
         </exec>
     </target>
 
- 
+ <target name="copy-to-test" depends="prepare" description="Copy to test environment">
+     <copydir src="${basedir}" dest="/tmp/commit1/"/>
+    </target>
 
 </project>
