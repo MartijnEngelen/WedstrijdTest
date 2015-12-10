@@ -27,7 +27,7 @@
     
 
     <target name="phploc" description="Measure project size using PHPLOC">
-	<chmod file="${basedir}/build/tools/*" perm="u+rwx"/>
+	<chmod file="${basedir}/build/tools/phploc.phar" perm="u+rwx"/>
         <exec executable="${basedir}/build/tools/phploc.phar" taskname="phploc">
             <arg value="--count-tests"/>
             <arg path="${basedir}/"/>
