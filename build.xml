@@ -23,14 +23,33 @@
 		
     </target>
 
+<<<<<<< HEAD
     
+=======
+     <target name="generate-code" description="Generate Currency-specific subclasses of Money and autoloader code">
+		<chmod file="${basedir}/build/tools/*" perm="u+rwx"/>
+		<chmod file="${basedir}/build/generate-child-classes.php" perm="u+rwx"/>
+        <exec executable="${basedir}/build/generate-child-classes.php" taskname="generate-code"/>
+
+        <exec executable="${basedir}/build/tools/phpab.phar" taskname="generate-code">
+            <arg value="--output"/>
+            <arg path="src/autoload.php"/>
+            <arg path="src"/>
+        </exec>
+    </target>
+
+>>>>>>> parent of a60df56... sdfqsd
     
 
     <target name="phploc" description="Measure project size using PHPLOC">
 	<chmod file="${basedir}/build/tools/phploc.phar" perm="u+rwx"/>
         <exec executable="${basedir}/build/tools/phploc.phar" taskname="phploc">
             <arg value="--count-tests"/>
+<<<<<<< HEAD
             <arg path="${basedir}/"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
             <arg path="${basedir}/tests"/>
         </exec>
     </target>
@@ -43,7 +62,11 @@
             <arg path="${basedir}/build/logs/phploc.csv"/>
             <arg value="--log-xml"/>
             <arg path="${basedir}/build/logs/phploc.xml"/>
+<<<<<<< HEAD
             <arg path="${basedir}/php"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
             <arg path="${basedir}/tests"/>
         </exec>
     </target>
@@ -53,13 +76,21 @@
             <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml"/>
             <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg"/>
             <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg"/>
+<<<<<<< HEAD
             <arg path="${basedir}/php"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
         </exec>
     </target>
 
     <target name="phpmd" description="Perform project mess detection using PHPMD and print result in text format">
         <exec executable="${basedir}/build/tools/phpmd.phar" taskname="phpmd">
+<<<<<<< HEAD
             <arg path="${basedir}/php"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
             <arg value="text"/>
             <arg path="${basedir}/build/phpmd.xml"/>
         </exec>
@@ -68,7 +99,11 @@
     <target name="phpmd-ci" depends="prepare"
             description="Perform project mess detection using PHPMD and log result in XML format">
         <exec executable="${basedir}/build/tools/phpmd.phar" taskname="phpmd">
+<<<<<<< HEAD
             <arg path="${basedir}/php"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
             <arg value="xml"/>
             <arg path="${basedir}/build/phpmd.xml"/>
             <arg value="--reportfile"/>
@@ -82,7 +117,11 @@
             <arg value="--standard=PSR2"/>
             <arg value="--extensions=php"/>
             <arg value="--ignore=autoload.php"/>
+<<<<<<< HEAD
             <arg path="${basedir}/php"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
             <arg path="${basedir}/tests"/>
         </exec>
     </target>
@@ -95,13 +134,21 @@
             <arg value="--standard=PSR2"/>
             <arg value="--extensions=php"/>
             <arg value="--ignore=autoload.php"/>
+<<<<<<< HEAD
             <arg path="${basedir}/"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
         </exec>
     </target>
 
     <target name="phpcpd" description="Find duplicate code using PHPCPD">
         <exec executable="${basedir}/build/tools/phpcpd.phar" taskname="phpcpd">
+<<<<<<< HEAD
             <arg path="${basedir}/php"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
         </exec>
     </target>
 
@@ -110,7 +157,11 @@
         <exec executable="${basedir}/build/tools/phpcpd.phar" taskname="phpcpd">
             <arg value="--log-pmd"/>
             <arg path="${basedir}/build/logs/pmd-cpd.xml"/>
+<<<<<<< HEAD
             <arg path="${basedir}/php"/>
+=======
+            <arg path="${basedir}/src"/>
+>>>>>>> parent of a60df56... sdfqsd
         </exec>
     </target>
 
