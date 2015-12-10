@@ -24,7 +24,6 @@
 
      <target name="generate-code" description="Generate Currency-specific subclasses of Money and autoloader code">
 		<chmod file="${basedir}/build/tools/" perm="u+rwx"/>
-		<chmod file="${basedir}/build/generate-child-classes.php" perm="u+rwx"/>
      
     </target>
 
