@@ -13,20 +13,17 @@
         <property name="clean.done" value="true"/>
     </target>
 
-    <target name="prepare" unless="prepare.done" depends="clean,generate-code" description="Prepare for build">
+    <target name="prepare" unless="prepare.done" depends="clean" description="Prepare for build">
         <mkdir dir="${basedir}/build/api"/>
         <mkdir dir="${basedir}/build/coverage"/>
         <mkdir dir="${basedir}/build/logs"/>
         <mkdir dir="${basedir}/build/pdepend"/>
-
+	<chmod dir="${basedir}/build/tools/" perm="u+rwx"/>
         <property name="prepare.done" value="true"/>
+		
     </target>
 
-     <target name="generate-code" description="Generate Currency-specific subclasses of Money and autoloader code">
-		<chmod file="${basedir}/build/tools/" perm="u+rwx"/>
-     
-    </target>
-
+    
     
 
     <target name="phploc" description="Measure project size using PHPLOC">
