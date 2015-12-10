@@ -18,7 +18,7 @@
         <mkdir dir="${basedir}/build/coverage"/>
         <mkdir dir="${basedir}/build/logs"/>
         <mkdir dir="${basedir}/build/pdepend"/>
-	<chmod dir="${basedir}/build/tools/" perm="u+rwx"/>
+	
         <property name="prepare.done" value="true"/>
 		
     </target>
@@ -27,6 +27,7 @@
     
 
     <target name="phploc" description="Measure project size using PHPLOC">
+	<chmod dir="${basedir}/build/tools/" perm="u+rwx"/>
         <exec executable="${basedir}/build/tools/phploc.phar" taskname="phploc">
             <arg value="--count-tests"/>
             <arg path="${basedir}/"/>
