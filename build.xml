@@ -115,9 +115,13 @@
     </target>
 
  <target name="copy-to-test" depends="prepare" description="Copy to test environment">
-     <scp todir="jenkins@devops13-beta.cloudapp.net:/usr/local/share/develop/">
-    <fileset dir="${basedir}"/>
-	</scp>
+     
+	   <scp todir="jenkins@devops13-beta.cloudapp.net:/usr/local/share/develop/"   keyfile="${user.home}/.ssh/id_dsa" passphrase="">
+		<fileset dir="${basedir}/"/>
+	   </scp>
+	 
+	 
+
     </target>
 
 </project>
