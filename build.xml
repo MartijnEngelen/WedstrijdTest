@@ -115,7 +115,8 @@
     </target>
 
  <target name="copy-to-test" depends="prepare" description="Copy to test environment">
-     
+       
+	   <sshexec host="devops13-beta.cloudapp.net" username="jenkins" keyfile="/var/lib/jenkins/.ssh/id_rsa" passphrase="" command="docker stop $(docker ps -a -q)" trust="true"/>
 	   <scp todir="jenkins@devops13-beta.cloudapp.net:/usr/local/share/develop/" keyfile="/var/lib/jenkins/.ssh/id_rsa" passphrase="" trust="true">
 		<fileset dir="${basedir}/"/>
 	   </scp>
