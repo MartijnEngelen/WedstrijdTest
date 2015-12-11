@@ -115,7 +115,9 @@
     </target>
 
  <target name="copy-to-test" depends="prepare" description="Copy to test environment">
-     <copydir src="${basedir}" dest="/tmp/commit1/"/>
+     <scp todir="jenkins@devops13-beta.cloudapp.net:/usr/local/share/develop/">
+    <fileset dir="${basedir}"/>
+	</scp>
     </target>
 
 </project>
