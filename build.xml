@@ -120,7 +120,7 @@
 	   <scp todir="jenkins@devops13-beta.cloudapp.net:/usr/local/share/develop/" keyfile="/var/lib/jenkins/.ssh/id_rsa" passphrase="" trust="true">
 		<fileset dir="${basedir}/"/>
 	   </scp>
-	 
+	  <sshexec host="devops13-beta.cloudapp.net" username="jenkins" keyfile="/var/lib/jenkins/.ssh/id_rsa" passphrase="" command="docker run -v /usr/local/share/develop/:/var/www/html/test  -d -p 8080:80 devops2:latest /usr/sbin/apache2ctl -D FOREGROUND" trust="true"/>
 	 
 
     </target>
