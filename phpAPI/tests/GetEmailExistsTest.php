@@ -11,6 +11,8 @@ class GetEmailExistsTest extends PHPUnit_Framework_TestCase
         $this->client = new GuzzleHttp\Client([
             'base_uri' => 'http://localhost'
         ]);
+
+            $client->setDefaultOption('verify', false);
     }
 
 	//test of 1 wordt teruggegeven als er een e-mailadres "test@test.be" in de database zit

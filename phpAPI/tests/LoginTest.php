@@ -8,9 +8,11 @@ class LoginTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+
         $this->client = new GuzzleHttp\Client([
             'base_uri' => 'http://localhost'
         ]);
+            $client->setDefaultOption('verify', false);
     }
 
 	//test of er een gebruiker met e-mailadres "test@test.be" en wachtwoord "test" in de database zit
