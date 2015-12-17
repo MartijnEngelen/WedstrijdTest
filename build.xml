@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="EGRS" default="build">
+<project name="Money" default="build">
 
-    <target name="build" depends="prepare,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,copy-to-test"/>
+    <target name="build" depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox,-check-failure"/>
 
 	
     <target name="clean" unless="clean.done" description="Cleanup build artifacts">
@@ -27,11 +27,27 @@
 		
     </target>
 
+    <target name="lint" depends="generate-code">
+        <apply executable="php" failonerror="true" taskname="lint">
+            <arg value="-l"/>
+
+            <fileset dir="${basedir}/phpAPI">
+                <include name="**/*.php"/>
+                <modified/>
+            </fileset>
+
+            <fileset dir="${basedir}/phpAPI/tests">
+                <include name="**/*.php"/>
+                <modified/>
+            </fileset>
+        </apply>
+    </target>
+
     <target name="phploc" description="Measure project size using PHPLOC">
         <exec executable="${basedir}/build/tools/phploc.phar" taskname="phploc">
             <arg value="--count-tests"/>
-            <arg path="${basedir}/php"/>
-            <arg path="${basedir}/tests"/>
+            <arg path="${basedir}/phpAPI"/>
+            <arg path="${basedir}/phpAPI/tests"/>
         </exec>
     </target>
 
@@ -43,8 +59,8 @@
             <arg path="${basedir}/build/logs/phploc.csv"/>
             <arg value="--log-xml"/>
             <arg path="${basedir}/build/logs/phploc.xml"/>
-            <arg path="${basedir}/php"/>
-            <arg path="${basedir}/tests"/>
+            <arg path="${basedir}/phpAPI"/>
+            <arg path="${basedir}/phpAPI/tests"/>
         </exec>
     </target>
 
@@ -53,13 +69,13 @@
             <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml"/>
             <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg"/>
             <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg"/>
-            <arg path="${basedir}/php"/>
+            <arg path="${basedir}/phpAPI"/>
         </exec>
     </target>
 
     <target name="phpmd" description="Perform project mess detection using PHPMD and print result in text format">
         <exec executable="${basedir}/build/tools/phpmd.phar" taskname="phpmd">
-            <arg path="${basedir}/php"/>
+            <arg path="${basedir}/phpAPI"/>
             <arg value="text"/>
             <arg path="${basedir}/build/phpmd.xml"/>
         </exec>
@@ -68,7 +84,7 @@
     <target name="phpmd-ci" depends="prepare"
             description="Perform project mess detection using PHPMD and log result in XML format">
         <exec executable="${basedir}/build/tools/phpmd.phar" taskname="phpmd">
-            <arg path="${basedir}/php"/>
+            <arg path="${basedir}/phpAPI"/>
             <arg value="xml"/>
             <arg path="${basedir}/build/phpmd.xml"/>
             <arg value="--reportfile"/>
@@ -82,8 +98,8 @@
             <arg value="--standard=PSR2"/>
             <arg value="--extensions=php"/>
             <arg value="--ignore=autoload.php"/>
-            <arg path="${basedir}/php"/>
-            <arg path="${basedir}/tests"/>
+            <arg path="${basedir}/phpAPI"/>
+            <arg path="${basedir}/phpAPI/tests"/>
         </exec>
     </target>
 
@@ -95,13 +111,13 @@
             <arg value="--standard=PSR2"/>
             <arg value="--extensions=php"/>
             <arg value="--ignore=autoload.php"/>
-            <arg path="${basedir}/php"/>
+            <arg path="${basedir}/phpAPI"/>
         </exec>
     </target>
 
     <target name="phpcpd" description="Find duplicate code using PHPCPD">
         <exec executable="${basedir}/build/tools/phpcpd.phar" taskname="phpcpd">
-            <arg path="${basedir}/php"/>
+            <arg path="${basedir}/phpAPI"/>
         </exec>
     </target>
 
@@ -110,26 +126,29 @@
         <exec executable="${basedir}/build/tools/phpcpd.phar" taskname="phpcpd">
             <arg value="--log-pmd"/>
             <arg path="${basedir}/build/logs/pmd-cpd.xml"/>
-            <arg path="${basedir}/php"/>
+            <arg path="${basedir}/phpAPI"/>
         </exec>
     </target>
 
-	 <target name="copy-to-test" depends="prepare" description="Copy to test environment">
-		   
-		<sshexec host="devops13-beta.cloudapp.net" username="jenkins" 
-		keyfile="/var/lib/jenkins/.ssh/id_rsa" passphrase="" 
-		command="docker stop $(docker ps -a -q)" trust="true"/>
-		
-		<scp todir="jenkins@devops13-beta.cloudapp.net:/usr/local/share/develop/" 
-			keyfile="/var/lib/jenkins/.ssh/id_rsa" passphrase="" trust="true">
-				<fileset dir="${basedir}/"/>
-		</scp>
-		  
-		  <sshexec host="devops13-beta.cloudapp.net" username="jenkins" 
-		  keyfile="/var/lib/jenkins/.ssh/id_rsa" passphrase="" 
-		  command="docker run -v /usr/local/share/develop/:/var/www/html/test  -d -p 8080:443 devops2:latest /usr/sbin/apache2ctl -D FOREGROUND" 
-		  trust="true"/>
-		 
-	</target>
+    <target name="phpunit" depends="prepare" description="Run unit tests with PHPUnit">
+        <exec executable="${basedir}/build/tools/phpunit.phar" resultproperty="result.phpunit" taskname="phpunit">
+            <arg value="--configuration"/>
+            <arg path="${basedir}/build/phpunit.xml"/>
+        </exec>
+    </target>
+
+    <target name="phpdox" depends="phploc-ci,phpcs-ci,phpmd-ci" description="Generate API documentation using phpDox">
+        <exec executable="${basedir}/build/tools/phpdox.phar" dir="${basedir}/build" taskname="phpdox"/>
+    </target>
+
+    <target name="-check-failure">
+        <fail message="PHPUnit did not finish successfully">
+            <condition>
+                <not>
+                    <equals arg1="${result.phpunit}" arg2="0"/>
+                </not>
+            </condition>
+        </fail>
+    </target>
 
 </project>
