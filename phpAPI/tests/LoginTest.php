@@ -13,7 +13,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
             'base_uri' => 'http://localhost'
         ]);
 
-            $this->client->setDefaultOption('verify', false);
+            $this->client->setDefaultOption('verify', 'false');
     }
 
 	//test of er een gebruiker met e-mailadres "test@test.be" en wachtwoord "test" in de database zit
