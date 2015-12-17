@@ -1,6 +1,6 @@
 <?php
 
-require('../vendor/autoload.php');
+require('~/vendor/autoload.php');
 
 
 class GetEmailExistsTest extends PHPUnit_Framework_TestCase
