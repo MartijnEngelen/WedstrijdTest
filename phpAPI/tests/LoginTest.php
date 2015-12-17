@@ -10,7 +10,8 @@ class LoginTest extends PHPUnit_Framework_TestCase
     {
 
         $this->client = new GuzzleHttp\Client([
-            'base_uri' => 'http://localhost'
+            'base_uri' => 'http://localhost',
+              'verify' => false
         ]);
 
             $this->client->setDefaultOption('verify', 'false');

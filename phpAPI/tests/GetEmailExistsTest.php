@@ -9,10 +9,11 @@ class GetEmailExistsTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->client = new GuzzleHttp\Client([
-            'base_uri' => 'http://localhost'
+            'base_uri' => 'http://localhost',
+            'verify' => false
         ]);
 
-          $this->client->setDefaultOption('verify', 'false');
+
     }
 
 	//test of 1 wordt teruggegeven als er een e-mailadres "test@test.be" in de database zit
