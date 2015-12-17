@@ -12,7 +12,7 @@ class GetEmailExistsTest extends PHPUnit_Framework_TestCase
             'base_uri' => 'http://localhost'
         ]);
 
-            $client->setDefaultOption('verify', false);
+          $this->$client->setDefaultOption('verify', false);
     }
 
 	//test of 1 wordt teruggegeven als er een e-mailadres "test@test.be" in de database zit
