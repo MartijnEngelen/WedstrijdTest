@@ -1,6 +1,7 @@
 <?php
 
-require('/wedstrijdplatform/vendor/autoload.php');
+require('../vendor/autoload.php');
+
 
 class GetEmailExistsTest extends PHPUnit_Framework_TestCase
 {
@@ -21,11 +22,11 @@ class GetEmailExistsTest extends PHPUnit_Framework_TestCase
                 'email' => 'test@test.be'
             ]
         ]);
-		
+
 		$this->assertEquals(200, $response->getStatusCode());
 
         $data = json_decode($response->getBody(), true);
-		
+
         $this->assertEquals(1, $data);
     }
 
@@ -37,11 +38,11 @@ class GetEmailExistsTest extends PHPUnit_Framework_TestCase
                 'email' => 'bestaatniet@test.be'
             ]
         ]);
-		
+
 		$this->assertEquals(200, $response->getStatusCode());
 
         $data = json_decode($response->getBody(), true);
-		
+
         $this->assertEquals(0, $data);
     }
 }
