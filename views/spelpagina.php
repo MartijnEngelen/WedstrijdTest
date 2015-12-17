@@ -1,3 +1,6 @@
+<?php
+	require_once("../assets/php/session_check.php");
+?>
 <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
 	<!-- Stack the columns on mobile by making one full-width and the other half-width -->
 	<div class="row">

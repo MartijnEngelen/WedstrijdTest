@@ -1,15 +1,84 @@
-/*** BASIS CSS WEBSITE ***/
+/*** CSS FILE GROEP13 ***/
+/*** FONTS ***/
+@font-face{
+	font-family: Oduda;
+    src: url(../fonts/Oduda-Bold-Demo.otf);
+}
+@font-face{
+
+	font-family: Nexa;
+    src: url(../fonts/NexaRustHandmade-Extended.otf);
+}
+@font-face{
+
+	font-family: NexaRust;
+    src: url(../fonts/NexaRustSans-Black.otf);
+}
+@font-face{
+
+	font-family: NexaScript;
+    src: url(../fonts/NexaRustScriptL-0.otf);
+}
+@font-face{
+
+	font-family: Gagalin;
+    src: url(../fonts/gagalin.ttf);
+}
+@font-face{
+
+	font-family: Kelson;
+    src: url(../fonts/Kelson Sans Regular.otf);
+}
+@font-face{
+
+	font-family: Prime;
+    src: url(../fonts/Prime Regular.otf);
+}
+@font-face{
+
+	font-family: NexaBig;
+    src: url(../fonts/NexaRustSlab-BlackShadow01.otf);
+}
+@font-face{
+
+	font-family: Aileron;
+    src: url(../fonts/Aileron-ThinItalic.otf);
+}
+@font-face{
+
+	font-family: AileronLight;
+    src: url(../fonts/Aileron-UltraLight.otf);
+}
+@font-face{
+
+	font-family: AileronHeavy;
+    src: url(../fonts/Aileron-Heavy.otf);
+}
+@font-face{
+
+	font-family: Pier;
+    src: url(../fonts/pier-regular.otf);
+}
+/*** START BASIC CSS ***/
 body{
 	/*background-color: #F0FFFF;*/
 	overflow-y: scroll;
 	overflow-x: hidden;
 	width:100%;
+	font-family: AileronHeavy;
+}
+h1{
+	font-family: Aileron;
+}
+p{
+	font-family: AileronLight;
+	font-size: 20px;
 }
 .centered{
 	text-align: center;
 }
 .border{
-		border: 1px solid black;
+		/*border: 1px solid black;*/
 }
 .borderleft{
 		border-left: 2px solid black;
@@ -61,6 +130,9 @@ body{
 .cl-effect-21 li:focus {
 	color: #fff;
 }
+.cl-effect-21 li:hover a{
+	color:black;
+}
 
 .cl-effect-21 li:hover::before,
 .cl-effect-21 li:focus::before,
@@ -77,6 +149,7 @@ body{
 .nav li{
 	
 	padding: 15px 0px;
+	font-family: NexaScript;
 }
 .nav li:hover{
 	
@@ -107,20 +180,20 @@ body{
 }
 
 .dutch_flag:hover{
-	background:url(../img/Taal/Belgium_flat.png);
+	background:url(../img/Taal/Dutch_Flag.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%; 
 }
 .dutch_flag:hover a{
-	z-index:-2000;
+	opacity:0;
 }
 .french_flag:hover{
-	background:url(../img/Taal/FRANCE.gif); 
+	background:url(../img/Taal/French_Flag.png); 
 	background-repeat: no-repeat;
 	background-size: 100% 100%; 
 }
 .french_flag:hover a{
-	z-index:-2000;
+	opacity:0;
 }
 .icon-bar {
   color: white;
@@ -146,17 +219,22 @@ body{
 	margin: auto;
 	padding: auto;
 }
+.speluitleg{
+	text-align:center;
+}
 .prijsTitel{
 	text-align: center;
 }
 /* Login */
 .login-control{
-		font-size:23px;
+		font-size:18px;
 		text-align: center;
 		width: 300px;
 		height: 50px;
 		margin-bottom: 20px;
-		border:1px solid;
+}
+.login-submit{
+	
 }
 /* Circle "Speel mee"*/
 
@@ -200,7 +278,7 @@ body{
 }
 
 .ch-img-1 { 
-	background-image: url(../img/1.jpg);
+	background-image: url(../img/Banana.jpg);
 }
 
 .ch-img-2 { 
@@ -278,7 +356,13 @@ body{
 	margin: 5%;
 }
 .form-signin{
-	margin-top:50%;
+	margin-top:40%;
+}
+.form-signin-heading{
+	margin-bottom:10%;
+}
+.form-input-login{
+	
 }
 /* PRIJZEN PAGINA */
 .prijzen{
@@ -296,7 +380,7 @@ body{
 	padding: 30px;
 }
 .lijst{
-	padding-left: 7%;
+	padding-left: 0%;
 }
 
 /* PROFIEL PAGINA */
@@ -331,10 +415,10 @@ body{
 	background-color: green;
 }
 .navbar-left{
-	font-size: 140%;
+	font-size: 160%;
 }
 .navbar-right{
-	font-size: 110%;
+	font-size: 150%;
 	padding-right: 0%;
 }
 
@@ -346,10 +430,10 @@ body{
 	background-color: blue;
 }
 .navbar-left{
-	font-size: 180%;
+	font-size: 220%;
 }
 .navbar-right{
-	font-size: 130%;
+	font-size: 200%;
 }
 
 
@@ -361,10 +445,10 @@ body{
 	background-color: yellow;	
 }
 .navbar-left{
-	font-size: 200%;
+	font-size: 250%;
 }
 .navbar-right{
-	font-size: 150%;
+	font-size: 200%;
 }
 
 

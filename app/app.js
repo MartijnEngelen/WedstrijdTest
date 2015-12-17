@@ -45,6 +45,11 @@
 				templateUrl: 'views/contact.php',
 				controller: 'contactController',
 				controllerAs: 'contactCtrl'
+			})	
+			.when('/registreren', {
+				templateUrl: 'views/registreren.php',
+				controller: 'homeController',
+				controllerAs: 'homeCtrl'
 			})
 			.otherwise({
 				redirectTo: '/'
